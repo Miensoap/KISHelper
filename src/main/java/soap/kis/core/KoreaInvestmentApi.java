@@ -1,23 +1,25 @@
 package soap.kis.core;
 
 import feign.Body;
+import feign.HeaderMap;
 import feign.Headers;
 import feign.Param;
 import feign.RequestLine;
-import feign.Response;
-import soap.kis.data.AccessToken;
+import soap.kis.data.AccessTokenResponse;
+import soap.kis.domain.Price;
+
+import java.util.Map;
 
 public interface KoreaInvestmentApi {
 
     @RequestLine("POST /oauth2/tokenP")
     @Headers("Content-Type: application/json")
     @Body("%7B\"grant_type\": \"client_credentials\", \"appkey\": \"{appkey}\", \"appsecret\": \"{appsecret}\"%7D")
-    AccessToken getToken(@Param("appkey") String appKey,
-                         @Param("appsecret") String appSecret);
+    AccessTokenResponse getToken(@Param("appkey") String appKey,
+                                 @Param("appsecret") String appSecret);
 
 
     @RequestLine("POST {apiUrl}")
-    @Headers("Content-Type: application/json")
-    Response getDailyPrice(@Param("apiUrl") String url);
+    Price getDailyPrice(@Param("apiUrl") String url, @HeaderMap Map<String, Object> headers);
 }
 

@@ -55,4 +55,24 @@ public class KISClient {
         System.out.println("새 토큰이 발급되었습니다!\n" + token.getAccessToken());
     }
 
+    public List<DailyStockPriceInfo> getOverseasDailyPrice(String exchange, String symbol, boolean modified) throws IOException {
+        String url = RequestUrl.ofOverseasPrice()
+                .path("quotations")
+                .path("dailyprice")
+                .param("EXCD", exchange)
+                .param("SYMB", symbol)
+                .param("GUBN", "0")
+                .param("BYMD", "")
+                .param("MODP", "1")
+                .build();
+
+        Map<String, Object> headers = new HashMap<>();
+        headers.put("content-type", "application/json");
+        headers.put("authorization", "Bearer " + accessToken);
+        headers.put("appkey", auth.appKey());
+        headers.put("appsecret", auth.appSecret());
+        headers.put("tr_id", "HHDFS76240000");
+
+        return kis.getDailyPrice(url, headers).getPrices();
+    }
 }
