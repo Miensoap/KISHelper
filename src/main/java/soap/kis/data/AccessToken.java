@@ -1,4 +1,4 @@
-package soap.kis.domain;
+package soap.kis.data;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
