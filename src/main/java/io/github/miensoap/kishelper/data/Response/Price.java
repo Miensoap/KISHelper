@@ -1,8 +1,9 @@
-package soap.kis.domain;
+package io.github.miensoap.kishelper.data.Response;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 import lombok.ToString;
+import io.github.miensoap.kishelper.domain.DailyStockPriceInfo;
 
 import java.util.List;
 

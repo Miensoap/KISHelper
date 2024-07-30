@@ -1,4 +1,4 @@
-package soap.kis.data;
+package io.github.miensoap.kishelper.data.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

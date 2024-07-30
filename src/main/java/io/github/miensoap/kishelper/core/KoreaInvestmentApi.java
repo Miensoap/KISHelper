@@ -1,12 +1,12 @@
-package soap.kis.core;
+package io.github.miensoap.kishelper.core;
 
 import feign.Body;
 import feign.HeaderMap;
 import feign.Headers;
 import feign.Param;
 import feign.RequestLine;
-import soap.kis.data.AccessTokenResponse;
-import soap.kis.domain.Price;
+import io.github.miensoap.kishelper.data.Response.AccessTokenResponse;
+import io.github.miensoap.kishelper.data.Response.Price;
 
 import java.util.Map;
 

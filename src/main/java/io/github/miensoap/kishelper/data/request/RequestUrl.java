@@ -1,4 +1,4 @@
-package soap.kis.data;
+package io.github.miensoap.kishelper.data.request;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,7 +13,7 @@ public class RequestUrl {
     public static final String KEY_AUTH = "AUTH";
 
     public static class UrlBuilder {
-        private List<String> path = new ArrayList<>();
+        private final List<String> path = new ArrayList<>();
         private final Map<String, String> params = new HashMap<String, String>();
 
         public UrlBuilder path(String path) {
@@ -38,13 +38,11 @@ public class RequestUrl {
     }
 
     public static UrlBuilder builder() {
-
         return new UrlBuilder()
                 .path(API_BASE_PATH);
     }
 
     public static UrlBuilder ofOverseasPrice() {
-
         return builder()
                 .path(OVERSEA_PRICE)
                 .path(VERSION)

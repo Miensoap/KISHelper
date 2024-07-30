@@ -1,12 +1,12 @@
-package soap.kis.core;
+package io.github.miensoap.kishelper.core;
 
 import feign.Feign;
 import feign.gson.GsonDecoder;
-import soap.kis.data.AccessTokenResponse;
-import soap.kis.data.ApiAuth;
-import soap.kis.data.RequestUrl;
-import soap.kis.domain.DailyStockPriceInfo;
-import soap.kis.util.ConfigLoader;
+import io.github.miensoap.kishelper.data.Response.AccessTokenResponse;
+import io.github.miensoap.kishelper.data.request.ApiAuth;
+import io.github.miensoap.kishelper.data.request.RequestUrl;
+import io.github.miensoap.kishelper.domain.DailyStockPriceInfo;
+import io.github.miensoap.kishelper.util.ConfigLoader;
 
 import java.io.IOException;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package soap.kis.util;
+package io.github.miensoap.kishelper.util;
 
 import lombok.Getter;
 import org.yaml.snakeyaml.Yaml;

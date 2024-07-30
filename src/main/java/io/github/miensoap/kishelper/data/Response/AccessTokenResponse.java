@@ -1,4 +1,4 @@
-package soap.kis.data;
+package io.github.miensoap.kishelper.data.Response;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.Getter;

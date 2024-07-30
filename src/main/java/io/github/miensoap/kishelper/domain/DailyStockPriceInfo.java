@@ -1,4 +1,4 @@
-package soap.kis.domain;
+package io.github.miensoap.kishelper.domain;
 
 import com.google.gson.annotations.SerializedName;
 
