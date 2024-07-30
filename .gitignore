@@ -1,7 +1,8 @@
-src/main/java/soap/kis/Main.java
+src/main/java/io/github/miensoap/kishelper/Main.java
 src/main/resources/kish.yml
 test.txt
 
+gradle.properties
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
