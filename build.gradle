@@ -1,7 +1,15 @@
+import com.vanniktech.maven.publish.SonatypeHost
+import com.vanniktech.maven.publish.JavaLibrary
+import com.vanniktech.maven.publish.JavadocJar
+
 plugins {
     id 'java'
-    id 'maven-publish'
+    id "com.vanniktech.maven.publish" version "0.29.0"
+    id 'signing'
 }
+
+group = 'io.github.miensoap'
+version = '0.1.0'
 
 repositories {
     mavenCentral()
@@ -19,48 +27,45 @@ dependencies {
 //    testImplementation 'org.junit.jupiter:junit-jupiter'
 }
 
-test {
-    useJUnitPlatform()
+//test {
+//    useJUnitPlatform()
+//}
+
+signing {
+    useGpgCmd()
+    sign publishing.publications
+
 }
 
-afterEvaluate {
-    publishing {
-        publications {
-            create("release", MavenPublication) {
-                from(components.java)
-                groupId = 'io.github.miensoap'
-                artifactId = 'KISHelper'
-                version = '0.1.0-test'
+mavenPublishing {
+//    signAllPublications()
+    configure(new JavaLibrary(new JavadocJar.Empty(), true))
+    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
 
-                pom {
-                    packaging = "jar"
-                    name.set("KISHelper")
-                    description.set("KISHelper: Library for Korea Investment Open API")
-                    url.set("https://github.com/Miensoap/KISHelper.git")
-                    inceptionYear.set("2024")
-
-                    licenses {
-                        license {
-                            name.set("MIT License")
-                            url.set("https://opensource.org/licenses/MIT")
-                        }
-                    }
-
-                    developers {
-                        developer {
-                            id.set("Miensoap")
-                            name.set("Miensoap")
-                            email.set("miensop51@gmail.com")
-                        }
-                    }
-
-                    scm {
-                        connection.set("scm:git@github.com:Miensoap/KISHelper")
-                        developerConnection.set("scm:git@github.com:Miensoap/KISHelper.git")
-                        url.set("https://github.com/Miensoap/KISHelper.git")
-                    }
-                }
+    coordinates('io.github.miensoap', 'KISHelper', "0.1.0")
+    pom {
+        name = "KISHelper"
+        description = "KISHelper: Library for Korea Investment Open API"
+        inceptionYear = "2024"
+        url = "https://github.com/Miensoap/KISHelper.git"
+        licenses {
+            license {
+                name = "MIT License"
+                url = "https://opensource.org/licenses/MIT"
             }
+        }
+        developers {
+            developer {
+                id = "Miensoap"
+                name = "Miensoap"
+                email = "miensop51@gmail.com"
+                url = "https://github.com/Miensoap"
+            }
+        }
+        scm {
+            url = "https://github.com/Miensoap/KISHelper.git"
+            connection = "scm:git@github.com:Miensoap/KISHelper"
+            developerConnection = "scm:git@github.com:Miensoap/KISHelper.git"
         }
     }
 }
