@@ -25,12 +25,11 @@ Add the following to your `build.gradle` file to include KISHelper in your proje
 
 ```groovy
 repositories {
-    mavenLocal()
     mavenCentral()
 }
 
 dependencies {
-    implementation 'io.github.miensoap:KISHelper:0.1.0-test'
+    implementation 'io.github.miensoap:KISHelper:0.1.0'
 }
 ```
 
@@ -49,18 +48,14 @@ accessToken: 'your_access_token' (optional)
 
 ```java
 // Example usage of KISHelper library
-package io.github.miensoap.kishelper;
-
 import io.github.miensoap.kishelper.core.KISClient;
-import io.github.miensoap.kishelper.util.ConfigLoader;
 
 import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        KISClient kisClient = KISClient.getInstance();
-        System.out.println(ConfigLoader.getAccessToken());
-        System.out.println(kisClient.getOverseasDailyPrice("AMS", "SOXL", false).size());
+        KISClient client = KISClient.getInstance();
+        System.out.println(client.getOverseasDailyPrice("AMS", "SOXL", false).size());
     }
 }
 ```
