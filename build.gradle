@@ -23,8 +23,8 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.34'
     implementation 'org.yaml:snakeyaml:2.0'
 
-//    testImplementation platform('org.junit:junit-bom:5.10.0')
-//    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
 }
 
 //test {
@@ -37,12 +37,17 @@ signing {
 
 }
 
+signing {
+    useGpgCmd()
+    sign publishing.publications
+
+}
+
 mavenPublishing {
-//    signAllPublications()
     configure(new JavaLibrary(new JavadocJar.Empty(), true))
     publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
 
-    coordinates('io.github.miensoap', 'KISHelper', "0.1.0")
+    coordinates('io.github.miensoap', 'KISHelper', "0.2.0")
     pom {
         name = "KISHelper"
         description = "KISHelper: Library for Korea Investment Open API"
