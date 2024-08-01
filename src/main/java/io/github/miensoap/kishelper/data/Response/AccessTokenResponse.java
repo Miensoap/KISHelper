@@ -3,6 +3,9 @@ package io.github.miensoap.kishelper.data.Response;
 import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+
 @Getter
 public class AccessTokenResponse {
     @SerializedName("access_token")
@@ -16,4 +19,9 @@ public class AccessTokenResponse {
 
     @SerializedName("expires_in")
     private int expiresIn;
+
+    public LocalDateTime getExpireTime() {
+        return LocalDateTime.now()
+                .plus(Duration.ofSeconds(this.expiresIn));
+    }
 }

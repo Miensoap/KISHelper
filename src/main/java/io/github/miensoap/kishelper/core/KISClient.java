@@ -52,10 +52,10 @@ public class KISClient {
     private void getAccessToken() {
         AccessTokenResponse token = kis.getToken(auth.appKey(), auth.appSecret());
         this.accessToken = token.getAccessToken();
-        System.out.println("새 토큰이 발급되었습니다!\n" + token.getAccessToken());
+        ConfigLoader.setAccessToken(token);
     }
 
-    public List<DailyStockPriceInfo> getOverseasDailyPrice(String exchange, String symbol, boolean modified) throws IOException {
+    public List<DailyStockPriceInfo> getOverseasDailyPrice(String exchange, String symbol, boolean modified) {
         String url = RequestUrl.ofOverseasPrice()
                 .path("quotations")
                 .path("dailyprice")
@@ -63,7 +63,7 @@ public class KISClient {
                 .param("SYMB", symbol)
                 .param("GUBN", "0")
                 .param("BYMD", "")
-                .param("MODP", "1")
+                .param("MODP", modified ? "1" : "0")
                 .build();
 
         Map<String, Object> headers = new HashMap<>();
