@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 public class KISClient {
-    private final String KOREA_INVESTMENT_API_PROD = "https://openapi.koreainvestment.com:9443";
+
     private final ApiAuth auth;
     private String accessToken;
     private final KoreaInvestmentApi kis;
@@ -36,8 +36,8 @@ public class KISClient {
         this.auth = auth;
         this.kis = Feign.builder()
                 .decoder(new GsonDecoder())
-                .target(KoreaInvestmentApi.class, KOREA_INVESTMENT_API_PROD);
         getAccessToken();
+                .target(KoreaInvestmentApi.class, Path.KOREA_INVESTMENT_API_PROD);
     }
 
     private KISClient(ApiAuth auth, String accessToken) {
