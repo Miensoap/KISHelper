@@ -4,6 +4,7 @@ import feign.Feign;
 import feign.gson.GsonDecoder;
 import io.github.miensoap.kishelper.data.Response.AccessTokenResponse;
 import io.github.miensoap.kishelper.data.consts.Path;
+import io.github.miensoap.kishelper.data.consts.TradingID;
 import io.github.miensoap.kishelper.data.request.ApiAuth;
 import io.github.miensoap.kishelper.data.request.RequestHeader;
 import io.github.miensoap.kishelper.data.request.RequestUrl;
@@ -52,12 +53,9 @@ public class KISClient {
                 .param("MODP", modified ? "1" : "0")
                 .build();
 
-        Map<String, Object> headers = new HashMap<>();
-        headers.put("content-type", "application/json");
-        headers.put("authorization", "Bearer " + accessToken);
-        headers.put("appkey", auth.appKey());
-        headers.put("appsecret", auth.appSecret());
-        headers.put("tr_id", "HHDFS76240000");
+        Map<String, Object> headers = RequestHeader.basicBuilder(auth)
+                .tradingId(TradingID.OVERSEAS_DAILY_PRICE)
+                .build().toMap();
 
         return kis.getDailyPrice(url, headers).getPrices();
     }
