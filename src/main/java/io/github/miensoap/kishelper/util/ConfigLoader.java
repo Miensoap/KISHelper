@@ -68,8 +68,9 @@ public class ConfigLoader {
     // TODO. yml 파일 수정해 자동 업데이트
     public static void setAccessToken(AccessTokenResponse token) {
         System.out.println("A new token has been issued! To continue using the token, please add the following to your configuration file:\n");
-        System.out.println(ACCESS_TOKEN + ": `" + token.getAccessToken() + "`");
-        System.out.println(EXPIRE_TIME + ": `" + token.getExpireTime().toString() + "`\n");
+        System.out.println(ACCESS_TOKEN + ": " + StringUtil.encloseInSingleQuote(token.getAccessToken()));
+        System.out.println(EXPIRE_TIME + ": " + StringUtil.encloseInSingleQuote(token.getExpireTime().toString()));
+        System.out.println();
     }
 }
 
