@@ -1,12 +1,13 @@
 package io.github.miensoap.kishelper.util;
 
 import io.github.miensoap.kishelper.data.Response.AccessTokenResponse;
-import lombok.Getter;
+import io.github.miensoap.kishelper.data.request.ApiAuth;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Map;
 
@@ -19,11 +20,8 @@ public class ConfigLoader {
     private static final String EXPIRE_TIME = "expireTime";
 
 
-    @Getter
     private static String appSecret;
-    @Getter
     private static String appKey;
-    @Getter
     private static String accessToken;
 
     static {
@@ -40,8 +38,8 @@ public class ConfigLoader {
             appSecret = (String) obj.get(APP_SECRET);
             accessToken = (String) obj.getOrDefault(ACCESS_TOKEN, null);
 
-            Date tokenExpires = (Date) obj.getOrDefault(EXPIRE_TIME, null);
-            if (isTokenExpired(tokenExpires)) {
+            String tokenExpires = (String) obj.getOrDefault(EXPIRE_TIME, null);
+            if (tokenExpires != null && isTokenExpired(tokenExpires)) {
                 System.out.println("Access Token is expired");
                 accessToken = null;
             }
@@ -50,9 +48,10 @@ public class ConfigLoader {
         }
     }
 
-    private static boolean isTokenExpired(Date tokenExpires) {
-        return tokenExpires != null &&
-                tokenExpires.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().isBefore(LocalDateTime.now());
+    private static boolean isTokenExpired(String tokenExpires) {
+        DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+        LocalDateTime expireTime = LocalDateTime.parse(tokenExpires, formatter);
+        return expireTime.isBefore(LocalDateTime.now());
     }
 
     private static InputStream getResourceAsStream(String resourceName) {
@@ -65,11 +64,16 @@ public class ConfigLoader {
         return resourceStream;
     }
 
+    public static ApiAuth getAuth() {
+        return new ApiAuth(appKey, appSecret, accessToken != null ? accessToken : null);
+    }
+
     // TODO. yml 파일 수정해 자동 업데이트
     public static void setAccessToken(AccessTokenResponse token) {
         System.out.println("A new token has been issued! To continue using the token, please add the following to your configuration file:\n");
-        System.out.println(ACCESS_TOKEN + ": `" + token.getAccessToken() + "`");
-        System.out.println(EXPIRE_TIME + ": `" + token.getExpireTime().toString() + "`\n");
+        System.out.println(ACCESS_TOKEN + ": " + StringUtil.encloseInSingleQuote(token.getAccessToken()));
+        System.out.println(EXPIRE_TIME + ": " + StringUtil.encloseInSingleQuote(token.getExpireTime().toString()));
+        System.out.println();
     }
 }
 

@@ -9,20 +9,25 @@ plugins {
 }
 
 group = 'io.github.miensoap'
-version = '0.1.0'
+version = '0.2.1'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
+    // feign
     implementation 'io.github.openfeign:feign-core:13.3'
     implementation 'io.github.openfeign:feign-gson:13.3'
 
-    compileOnly 'org.projectlombok:lombok:1.18.34'
-    annotationProcessor 'org.projectlombok:lombok:1.18.34'
+    // yml
     implementation 'org.yaml:snakeyaml:2.0'
 
+    // lombok
+    compileOnly 'org.projectlombok:lombok:1.18.34'
+    annotationProcessor 'org.projectlombok:lombok:1.18.34'
+
+    // test
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }
@@ -47,7 +52,7 @@ mavenPublishing {
     configure(new JavaLibrary(new JavadocJar.Empty(), true))
     publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
 
-    coordinates('io.github.miensoap', 'KISHelper', "0.2.0")
+    coordinates('io.github.miensoap', 'KISHelper', "0.2.1")
     pom {
         name = "KISHelper"
         description = "KISHelper: Library for Korea Investment Open API"
