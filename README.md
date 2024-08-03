@@ -1,10 +1,12 @@
 # KISHelper
-
+  
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 KISHelper is a Java library for interacting with the Korea Investment Open API.  
 This library simplifies the process of accessing and using the API,   
 providing a more efficient way to integrate financial data into your applications.
+
+**"This project is under ongoing development. For more details, please visit [this branch](https://github.com/Miensoap/KISHelper/tree/dev) or [this blog](https://miensoap.tistory.com/category/KISHelper)."**
 
 ## Table of Contents
 - [Features](#features)
