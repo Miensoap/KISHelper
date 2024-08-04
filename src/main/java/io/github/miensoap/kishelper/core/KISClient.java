@@ -3,16 +3,14 @@ package io.github.miensoap.kishelper.core;
 import feign.Feign;
 import feign.gson.GsonDecoder;
 import io.github.miensoap.kishelper.data.Response.AccessTokenResponse;
-import io.github.miensoap.kishelper.data.Response.Price;
+import io.github.miensoap.kishelper.data.Response.StockQuotationsResponse;
 import io.github.miensoap.kishelper.data.consts.ApiPath;
 import io.github.miensoap.kishelper.data.consts.TradingID;
 import io.github.miensoap.kishelper.data.request.ApiAuth;
 import io.github.miensoap.kishelper.data.request.QueryParams;
 import io.github.miensoap.kishelper.data.request.RequestHeader;
-import io.github.miensoap.kishelper.domain.DailyStockPriceInfo;
 import io.github.miensoap.kishelper.util.ConfigLoader;
 
-import java.util.List;
 import java.util.Map;
 
 import static io.github.miensoap.kishelper.data.consts.QueryParamKey.APPLY_MODIFIED_PRICE;
@@ -49,22 +47,23 @@ public class KISClient {
         ConfigLoader.setAccessToken(token);
     }
 
-    public List<DailyStockPriceInfo> getOverseasDailyPrice(String exchange, String symbol, boolean modified) {
+    public StockQuotationsResponse getOverseasPeriodPrice(String exchange,
+                                                          String symbol,
+                                                          String period,
+                                                          String inquiryDate,
+                                                          boolean modified) {
         Map<String, String> params = new QueryParams()
                 .addParam(EXCHANGE_CODE, exchange)
                 .addParam(STOCK_SYMBOL, symbol)
-                .addParam(PERIOD_DIVISION, "0")
-                .addParam(INQUIRY_DATE, "") // Today
+                .addParam(PERIOD_DIVISION, period)
+                .addParam(INQUIRY_DATE, inquiryDate)
                 .addParam(APPLY_MODIFIED_PRICE, modified ? "1" : "0")
                 .build();
-
 
         Map<String, Object> headers = RequestHeader.basicBuilder(auth)
                 .tradingId(TradingID.OVERSEAS_DAILY_PRICE)
                 .build().toMap();
 
-
-        Price dailyPrice = kis.getDailyPrice(params, headers);
-        return dailyPrice.getPrices();
+        return kis.getDailyPrice(params, headers);
     }
 }

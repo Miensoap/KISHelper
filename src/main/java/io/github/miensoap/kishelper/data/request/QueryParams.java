@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import static io.github.miensoap.kishelper.data.consts.QueryParamKey.USER_AUTH_INFO;
+import static io.github.miensoap.kishelper.data.consts.QueryParamValue.USER_AUTH_DEFAULT;
 
 public class QueryParams {
     private final Map<String, String> parameters = new HashMap<>();
@@ -20,7 +21,7 @@ public class QueryParams {
      * @return QueryMap
      */
     public Map<String, String> build() {
-        this.addParam(USER_AUTH_INFO, "");
+        this.addParam(USER_AUTH_INFO, USER_AUTH_DEFAULT);
         return Collections.unmodifiableMap(this.parameters);
     }
 

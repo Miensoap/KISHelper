@@ -3,7 +3,7 @@ package io.github.miensoap.kishelper.data.consts;
 /**
  * QueryParamKey 클래스는 다양한 조회 조건에 사용되는 상수 필드를 정의합니다.
  */
-public class QueryParamKey {
+public abstract class QueryParamKey {
     /**
      * 사용자 인증 정보
      */
