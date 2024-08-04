@@ -8,7 +8,7 @@ import feign.QueryMap;
 import feign.RequestLine;
 import feign.Response;
 import io.github.miensoap.kishelper.data.Response.AccessTokenResponse;
-import io.github.miensoap.kishelper.data.Response.Price;
+import io.github.miensoap.kishelper.data.Response.StockQuotationsResponse;
 import io.github.miensoap.kishelper.data.consts.ApiPath;
 
 import java.util.Map;
@@ -27,7 +27,7 @@ public interface KoreaInvestmentApi {
 
 
     @RequestLine("POST " + ApiPath.OVERSEAS_DAILY_PRICE)
-    Price getDailyPrice(@QueryMap Map<String, String> params,
-                        @HeaderMap Map<String, Object> headers);
+    StockQuotationsResponse getDailyPrice(@QueryMap Map<String, String> params,
+                                          @HeaderMap Map<String, Object> headers);
 }
 
