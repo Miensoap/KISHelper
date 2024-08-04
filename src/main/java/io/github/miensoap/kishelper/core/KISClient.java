@@ -64,6 +64,6 @@ public class KISClient {
                 .tradingId(TradingID.OVERSEAS_DAILY_PRICE)
                 .build().toMap();
 
-        return kis.getDailyPrice(params, headers);
+        return kis.getOverseasPeriodPrice(params, headers);
     }
 }
