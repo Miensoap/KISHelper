@@ -91,7 +91,7 @@ public abstract class QueryParamKey {
      * 상품 유형 코드 <p>
      * (예: 512 미국 나스닥)
      */
-    public static final String PRODUCT_TYPE_CODE = "RDT_TYPE_CD";
+    public static final String PRODUCT_TYPE_CODE = "PRDT_TYPE_CD";
 
     /**
      * 상품 번호 <p>
