@@ -55,12 +55,16 @@ import io.github.miensoap.kishelper.core.KISClient;
 import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         KISClient client = KISClient.getInstance();
         System.out.println(client.getOverseasDailyPrice("AMS", "SOXL", false).size());
 
+        // version 0.2.3
         Stock soxl = new Stock("SOXL", AMEX);
         System.out.println(soxl.getPriceOfDate(LocalDate.of(2024, 8, 2), true));
+
+        // version 0.2.4
+        System.out.println(soxl.getDetails().englishName());
     }
 }
 ```
