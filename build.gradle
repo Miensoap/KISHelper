@@ -8,9 +8,6 @@ plugins {
     id 'signing'
 }
 
-group = 'io.github.miensoap'
-version = '0.2.3'
-
 repositories {
     mavenCentral()
 }
@@ -46,7 +43,7 @@ mavenPublishing {
     configure(new JavaLibrary(new JavadocJar.Empty(), true))
     publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
 
-    coordinates('io.github.miensoap', 'KISHelper', "0.2.3")
+    coordinates('io.github.miensoap', 'KISHelper', "0.2.4")
     pom {
         name = "KISHelper"
         description = "KISHelper: Library for Korea Investment Open API"
