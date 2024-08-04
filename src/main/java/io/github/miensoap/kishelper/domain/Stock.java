@@ -1,6 +1,9 @@
 package io.github.miensoap.kishelper.domain;
 
 import io.github.miensoap.kishelper.core.KISClient;
+import io.github.miensoap.kishelper.data.consts.Exchange;
+import io.github.miensoap.kishelper.domain.data.PeriodStockPriceInfo;
+import io.github.miensoap.kishelper.domain.data.StockDetails;
 import io.github.miensoap.kishelper.util.StringUtil;
 
 import java.time.LocalDate;
@@ -11,10 +14,10 @@ import static io.github.miensoap.kishelper.data.consts.QueryParamValue.PERIOD_DI
 public class Stock {
 
     private final String symbol;
-    private final String exchange;
+    private final Exchange exchange;
     private final KISClient client;
 
-    public Stock(String symbol, String exchange) {
+    public Stock(String symbol, Exchange exchange) {
         this.symbol = symbol;
         this.exchange = exchange;
         this.client = KISClient.getInstance();
@@ -23,7 +26,8 @@ public class Stock {
     public PeriodStockPriceInfo getPriceOfDate(LocalDate date, boolean modified) {
         String dateString = StringUtil.convertToDateFormat(date);
 
-        Optional<PeriodStockPriceInfo> priceOfDate = client.getOverseasPeriodPrice(this.exchange,
+        Optional<PeriodStockPriceInfo> priceOfDate = client.getOverseasPeriodPrice(
+                this.exchange.getCode(),
                 this.symbol,
                 PERIOD_DIVISION_DAY,
                 dateString,
@@ -34,5 +38,11 @@ public class Stock {
             throw new IllegalArgumentException("No stock price information available for " + dateString);
         }
         return priceOfDate.get();
+    }
+
+    public StockDetails getDetails(){
+        return client.getStockDetailInfo(
+                this.exchange.getProductTypeCode(),
+                this.symbol);
     }
 }
