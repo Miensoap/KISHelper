@@ -1,20 +1,23 @@
 package io.github.miensoap.kishelper.data.Response;
 
 import com.google.gson.annotations.SerializedName;
+import io.github.miensoap.kishelper.util.StringUtil;
 import lombok.Getter;
 import lombok.ToString;
-import io.github.miensoap.kishelper.domain.DailyStockPriceInfo;
+import io.github.miensoap.kishelper.domain.PeriodStockPriceInfo;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Getter
 @ToString
-public class Price {
+public class StockQuotationsResponse {
     @SerializedName("output1")
     private PriceInfo priceInfo;
 
     @SerializedName("output2")
-    private List<DailyStockPriceInfo> prices;
+    private List<PeriodStockPriceInfo> prices;
 
     @Getter
     public static class PriceInfo {
@@ -26,5 +29,13 @@ public class Price {
 
         @SerializedName("nrec")
         private String 전일종가;
+    }
+
+    public Optional<PeriodStockPriceInfo> ofDate(LocalDate date){
+        String dateString = StringUtil.convertToDateFormat(date);
+
+        return this.prices.stream()
+                .filter((price) -> price.date().equals(dateString))
+                .findAny();
     }
 }
