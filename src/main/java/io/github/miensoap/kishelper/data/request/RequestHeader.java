@@ -59,6 +59,7 @@ public class RequestHeader {
                 .contentType("application/json")
                 .appKey(auth.getAppKey())
                 .appSecret(auth.getAppSecret())
+                .customerType("P")
                 .authorization(auth.getAccessToken());
     }
 
