@@ -12,7 +12,7 @@ public class ApiAuth {
     public ApiAuth(String appKey, String appSecret, String accessToken) {
         this.appKey = appKey;
         this.appSecret = appSecret;
-        this.accessToken = BEARER_TOKEN_PREFIX + accessToken;
+        this.accessToken = accessToken == null ? null : BEARER_TOKEN_PREFIX + accessToken;
     }
 
     public boolean isAccessTokenPresent() {
