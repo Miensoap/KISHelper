@@ -58,6 +58,9 @@ public class Main {
     public static void main(String[] args) throws IOException {
         KISClient client = KISClient.getInstance();
         System.out.println(client.getOverseasDailyPrice("AMS", "SOXL", false).size());
+
+        Stock soxl = new Stock("SOXL", AMEX);
+        System.out.println(soxl.getPriceOfDate(LocalDate.of(2024, 8, 2), true));
     }
 }
 ```
