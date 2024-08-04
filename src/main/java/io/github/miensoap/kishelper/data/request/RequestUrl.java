@@ -14,7 +14,7 @@ public class RequestUrl {
 
     public static class UrlBuilder {
         private final List<String> path = new ArrayList<>();
-        private final Map<String, String> params = new HashMap<String, String>();
+        private final Map<String, String> params = new HashMap<>();
 
         public UrlBuilder path(String path) {
             this.path.add(path);
@@ -49,3 +49,5 @@ public class RequestUrl {
                 .param(KEY_AUTH, "");
     }
 }
+
+

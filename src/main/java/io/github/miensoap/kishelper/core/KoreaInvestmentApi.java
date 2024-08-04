@@ -4,13 +4,20 @@ import feign.Body;
 import feign.HeaderMap;
 import feign.Headers;
 import feign.Param;
+import feign.QueryMap;
 import feign.RequestLine;
+import feign.Response;
 import io.github.miensoap.kishelper.data.Response.AccessTokenResponse;
 import io.github.miensoap.kishelper.data.Response.Price;
+import io.github.miensoap.kishelper.data.consts.ApiPath;
 
 import java.util.Map;
 
 public interface KoreaInvestmentApi {
+    @RequestLine("POST {path}")
+    Response request(@Param("path") String url,
+                     @QueryMap Map<String, String> params,
+                     @HeaderMap Map<String, Object> headers);
 
     @RequestLine("POST /oauth2/tokenP")
     @Headers("Content-Type: application/json")
@@ -19,7 +26,8 @@ public interface KoreaInvestmentApi {
                                  @Param("appsecret") String appSecret);
 
 
-    @RequestLine("POST {apiUrl}")
-    Price getDailyPrice(@Param("apiUrl") String url, @HeaderMap Map<String, Object> headers);
+    @RequestLine("POST " + ApiPath.OVERSEAS_DAILY_PRICE)
+    Price getDailyPrice(@QueryMap Map<String, String> params,
+                        @HeaderMap Map<String, Object> headers);
 }
 

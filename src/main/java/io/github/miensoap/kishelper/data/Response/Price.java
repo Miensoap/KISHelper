@@ -18,8 +18,6 @@ public class Price {
 
     @Getter
     public static class PriceInfo {
-        // Getters and setters
-        @Getter
         @SerializedName("rsym")
         private String 실시간조회종목코드;
 
