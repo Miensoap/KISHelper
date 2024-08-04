@@ -1,8 +1,10 @@
 package io.github.miensoap.kishelper.data.consts;
 
+
 /**
  * ExchangeCode 클래스는 거래소 코드를 정의합니다.
  */
+@Deprecated
 public abstract class ExchangeCode {
     /** 홍콩 */
     public static final String HONG_KONG = "HKS";

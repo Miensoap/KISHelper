@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 import io.github.miensoap.kishelper.util.StringUtil;
 import lombok.Getter;
 import lombok.ToString;
-import io.github.miensoap.kishelper.domain.PeriodStockPriceInfo;
+import io.github.miensoap.kishelper.domain.data.PeriodStockPriceInfo;
 
 import java.time.LocalDate;
 import java.util.List;
