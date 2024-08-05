@@ -16,6 +16,7 @@ public class Stock {
     private final String symbol;
     private final Exchange exchange;
     private final KISClient client;
+    private StockDetails details;
 
     public Stock(String symbol, Exchange exchange) {
         this.symbol = symbol;
@@ -41,8 +42,11 @@ public class Stock {
     }
 
     public StockDetails getDetails(){
-        return client.getStockDetailInfo(
+        if(this.details != null) return this.details;
+
+        this.details = client.getStockDetailInfo(
                 this.exchange.getProductTypeCode(),
                 this.symbol);
+        return this.details;
     }
 }
