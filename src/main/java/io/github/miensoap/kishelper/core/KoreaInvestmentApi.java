@@ -15,8 +15,14 @@ import io.github.miensoap.kishelper.data.consts.ApiPath;
 import java.util.Map;
 
 public interface KoreaInvestmentApi {
+
+    @RequestLine("GET {path}")
+    Response requestGet(@Param("path") String url,
+                     @QueryMap Map<String, String> params,
+                     @HeaderMap Map<String, Object> headers);
+
     @RequestLine("POST {path}")
-    Response request(@Param("path") String url,
+    Response requestPost(@Param("path") String url,
                      @QueryMap Map<String, String> params,
                      @HeaderMap Map<String, Object> headers);
 
