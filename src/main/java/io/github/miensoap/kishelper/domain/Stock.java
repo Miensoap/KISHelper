@@ -22,7 +22,7 @@ public class Stock {
     private final Exchange exchange;
 
     @Getter
-    private StockDetails details;
+    private final StockDetails details;
 
     private final KISClient client;
 
@@ -53,5 +53,9 @@ public class Stock {
             throw new IllegalArgumentException("No stock price information available for " + dateString);
         }
         return priceOfDate.get();
+    }
+
+    public String getName(){
+        return this.details.englishName();
     }
 }
