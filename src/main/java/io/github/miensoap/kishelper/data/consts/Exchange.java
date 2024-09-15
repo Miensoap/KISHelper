@@ -43,5 +43,12 @@ public enum Exchange {
         this.code = code;
         this.productTypeCode = productTypeCode;
     }
+
+    public static Exchange fromCode(String code) {
+        for (Exchange exchange : Exchange.values()) {
+            if (code.equals(exchange.getCode())) return exchange;
+        }
+        throw new IllegalArgumentException("No matching Exchange for code: " + code);
+    }
 }
 
