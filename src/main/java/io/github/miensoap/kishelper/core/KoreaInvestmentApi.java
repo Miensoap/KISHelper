@@ -20,6 +20,16 @@ public interface KoreaInvestmentApi {
                      @QueryMap Map<String, String> params,
                      @HeaderMap Map<String, Object> headers);
 
+    @RequestLine("GET {path}")
+    Response requestGet(@Param("path") String url,
+                     @QueryMap Map<String, String> params,
+                     @HeaderMap Map<String, Object> headers);
+
+    @RequestLine("POST {path}")
+    Response requestPost(@Param("path") String url,
+                     @QueryMap Map<String, String> params,
+                     @HeaderMap Map<String, Object> headers);
+
     @RequestLine("POST /oauth2/tokenP")
     @Headers("Content-Type: application/json")
     @Body("%7B\"grant_type\": \"client_credentials\", \"appkey\": \"{appkey}\", \"appsecret\": \"{appsecret}\"%7D")
