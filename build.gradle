@@ -87,4 +87,12 @@ sourceSets {
             exclude "**"
         }
     }
+    test {
+        java {
+            exclude "**"
+        }
+        resources {
+            exclude "**"
+        }
+    }
 }
