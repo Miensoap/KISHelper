@@ -1,7 +1,10 @@
 package io.github.miensoap.kishelper.domain;
 
+import io.github.miensoap.kishelper.core.Client;
 import io.github.miensoap.kishelper.core.KISClient;
 import io.github.miensoap.kishelper.data.consts.Exchange;
+import io.github.miensoap.kishelper.domain.data.BasicInfo;
+import io.github.miensoap.kishelper.domain.data.ListingInfo;
 import io.github.miensoap.kishelper.domain.data.PeriodStockPriceInfo;
 import io.github.miensoap.kishelper.domain.data.StockDetails;
 import io.github.miensoap.kishelper.exception.StockNotFoundException;
@@ -27,13 +30,13 @@ public class Stock {
     private final Client client;
 
     public Stock(String symbol, Exchange exchange) {
-        this.symbol = symbol;
+        this.symbol = symbol.toUpperCase();
         this.exchange = exchange;
         this.client = KISClient.getInstance();
         this.details = client.getStockDetailInfo(
                 this.exchange.getProductTypeCode(),
                 this.symbol);
-        if(this.details == null) {
+        if (this.details == null) {
             throw new StockNotFoundException(this.symbol, this.exchange);
         }
     }
@@ -55,7 +58,15 @@ public class Stock {
         return priceOfDate.get();
     }
 
-    public String getName(){
+    public String getName() {
         return this.details.englishName();
+    }
+
+    public BasicInfo getBasicInfo() {
+        return BasicInfo.of(this.symbol, this.details);
+    }
+
+    public ListingInfo getListingInfo() {
+        return ListingInfo.of(this.details);
     }
 }

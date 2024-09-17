@@ -3,7 +3,7 @@ package io.github.miensoap.kishelper.domain.data;
 import com.google.gson.annotations.SerializedName;
 
 public record StockDetails(
-        @SerializedName("std_pdno") String standardProductNumber,            // 표준상품번호
+        @SerializedName("std_pdno") String standardProductNumber,            // 표준상품번호 (ISIN)
         @SerializedName("prdt_name") String productName,                     // 상품명
         @SerializedName("prdt_eng_name") String englishName,                 // 상품영문명
         @SerializedName("prdt_clsf_cd") String productClassificationCode,    // 상품분류코드
