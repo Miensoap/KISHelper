@@ -24,7 +24,7 @@ public class Stock {
     @Getter
     private final StockDetails details;
 
-    private final KISClient client;
+    private final Client client;
 
     public Stock(String symbol, Exchange exchange) {
         this.symbol = symbol;

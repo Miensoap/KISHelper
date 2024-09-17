@@ -1,5 +1,5 @@
-src/main/java/io/github/miensoap/kishelper/Main.java
-src/main/resources/kish.yml
+**/Main.java
+**/kish.yml
 
 gradle.properties
 .gradle
